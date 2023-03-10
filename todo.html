@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>todoリスト</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>Todoリスト</h1>
+      <input
+        type="text"
+        v-model="newtodo"
+        placeholder="todoを入力してください "
+      /><button @click="addTodo">追加</button>
+      <ul>
+        <li v-for="todo, index in todolist">
+          <input type="checkbox" v-model="todo.done" />
+          <span>{{ todo.text }}</span>
+          <input
+            type="text"
+            v-model="newtodo"
+            placeholder="編集内容を入力してください "
+            v-show="todo.done"
+          /><button @click="update(index)" v-show="todo.done">編集</button>
+          <button @click="remove(index)" v-show="todo.done">削除</button>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+    <script src="./todo.js"></script>
+  </body>
+</html>
