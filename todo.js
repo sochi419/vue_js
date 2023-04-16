@@ -30,8 +30,4 @@ new Vue({
       this.todoList = JSON.parse(dataStr);
     }
   },
-
-  todoList: function () {
-    localStorage.setItem(this.storageKey, JSON.stringify(this.todolist));
-  },
 });
