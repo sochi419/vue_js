@@ -19,7 +19,7 @@
           <span>{{ todo.text }}</span>
           <input
             type="text"
-            v-model="newTodo"
+            v-model="editTodo"
             placeholder="編集内容を入力してください "
             v-show="todo.done"
           /><button @click="update(index)" v-show="todo.done">編集</button>
