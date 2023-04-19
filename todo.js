@@ -10,6 +10,9 @@ new Vue({
   },
   methods: {
     add: function () {
+      for (var i = 0; i < this.todoList.length; i++) {
+        this.todoList[i].done = false;
+      }
       this.todoList.push({ text: this.newTodo });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       this.newTodo = "";
@@ -19,6 +22,9 @@ new Vue({
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
     update: function (index) {
+      for (var i = 0; i < this.todoList.length; i++) {
+        this.todoList[i].done = false;
+      }
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
     setEditTodoValue: function (todo, index) {
@@ -29,6 +35,9 @@ new Vue({
     const dataStr = localStorage.getItem(this.storageKey);
     if (dataStr) {
       this.todoList = JSON.parse(dataStr);
+      for (var i = 0; i < this.todoList.length; i++) {
+        this.todoList[i].done = false;
+      }
     }
   },
 });
