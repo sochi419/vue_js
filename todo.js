@@ -24,6 +24,9 @@ new Vue({
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       this.editTodo = "";
     },
+    setEditTodoValue: function (text) {
+      this.editTodo = text;
+    },
   },
   created: function () {
     const dataStr = localStorage.getItem(this.storageKey);

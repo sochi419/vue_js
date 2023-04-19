@@ -14,15 +14,15 @@
         placeholder="todoを入力してください "
       /><button @click="add">追加</button>
       <ul>
-        <li v-for="todo, index in todoList">
-          <input type="checkbox" v-model="todo.done" />
-          <span>{{ todo.text }}</span>
+        <li v-for="(todo, index) in todoList">
           <input
-            type="text"
-            v-model="editTodo"
-            placeholder="編集内容を入力してください "
-            v-show="todo.done"
-          /><button @click="update(index)" v-show="todo.done">編集</button>
+            type="checkbox"
+            v-model="todo.done"
+            @change="setEditTodoValue(todo.text)"
+          />
+          <span>{{ todo.text }}</span>
+          <input type="text" v-show="todo.done" v-model="editTodo" />
+          <button @click="update(index)" v-show="todo.done">編集</button>
           <button @click="remove(index)" v-show="todo.done">削除</button>
         </li>
       </ul>
