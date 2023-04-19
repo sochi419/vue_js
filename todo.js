@@ -10,6 +10,9 @@ new Vue({
   },
   methods: {
     add: function () {
+      if (this.newTodo.trim() === "") {
+        return;
+      }
       for (var i = 0; i < this.todoList.length; i++) {
         this.todoList[i].done = false;
       }
