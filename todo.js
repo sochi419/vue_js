@@ -1,7 +1,6 @@
 /*global Vue*/
-new Vue({
-  el: "#app",
-  data: function () {
+Vue.createApp({
+  data() {
     return {
       storageKey: "todoList",
       newTodo: "",
@@ -9,40 +8,40 @@ new Vue({
     };
   },
   methods: {
-    add: function () {
+    add() {
       if (this.newTodo.trim() === "") {
         return;
       }
-      for (var i = 0; i < this.todoList.length; i++) {
+      for (let i = 0; i < this.todoList.length; i++) {
         this.todoList[i].done = false;
       }
       this.todoList.push({ text: this.newTodo, editText: "" });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       this.newTodo = "";
     },
-    remove: function (index) {
+    remove(index) {
       this.todoList.splice(index, 1);
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
-    update: function (index) {
-      var todo = this.todoList[index];
+    update(index) {
+      const todo = this.todoList[index];
       if (todo.editText !== "") {
         todo.text = todo.editText;
         todo.editText = "";
         localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       }
     },
-    setEditTodoValue: function (todo, index) {
+    setEditTodoValue(todo, index) {
       this.todoList[index].editText = todo.text;
     },
   },
-  created: function () {
+  created() {
     const dataStr = localStorage.getItem(this.storageKey);
     if (dataStr) {
       this.todoList = JSON.parse(dataStr);
-      for (var i = 0; i < this.todoList.length; i++) {
+      for (let i = 0; i < this.todoList.length; i++) {
         this.todoList[i].done = false;
       }
     }
   },
-});
+}).mount("#app");
