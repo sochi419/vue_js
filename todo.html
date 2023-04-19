@@ -18,10 +18,10 @@
           <input
             type="checkbox"
             v-model="todo.done"
-            @change="setEditTodoValue(todo.text)"
+            @change="setEditTodoValue(todo, index)"
           />
           <span>{{ todo.text }}</span>
-          <input type="text" v-show="todo.done" v-model="editTodo" />
+          <input type="text" v-show="todo.done" v-model="todo.text" />
           <button @click="update(index)" v-show="todo.done">編集</button>
           <button @click="remove(index)" v-show="todo.done">削除</button>
         </li>

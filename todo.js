@@ -5,7 +5,6 @@ new Vue({
     return {
       storageKey: "todoList",
       newTodo: "",
-      editTodo: "",
       todoList: [],
     };
   },
@@ -20,12 +19,10 @@ new Vue({
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
     update: function (index) {
-      this.todoList.splice(index, 1, { text: this.editTodo });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
-      this.editTodo = "";
     },
-    setEditTodoValue: function (text) {
-      this.editTodo = text;
+    setEditTodoValue: function (todo, index) {
+      this.todoList[index].text = todo.text;
     },
   },
   created: function () {
