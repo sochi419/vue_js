@@ -13,7 +13,7 @@ new Vue({
       for (var i = 0; i < this.todoList.length; i++) {
         this.todoList[i].done = false;
       }
-      this.todoList.push({ text: this.newTodo });
+      this.todoList.push({ text: this.newTodo, editText: "" });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       this.newTodo = "";
     },
@@ -22,13 +22,15 @@ new Vue({
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
     update: function (index) {
-      for (var i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].done = false;
+      var todo = this.todoList[index];
+      if (todo.editText !== "") {
+        todo.text = todo.editText;
+        todo.editText = "";
+        localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       }
-      localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
     },
     setEditTodoValue: function (todo, index) {
-      this.todoList[index].text = todo.text;
+      this.todoList[index].editText = todo.text;
     },
   },
   created: function () {

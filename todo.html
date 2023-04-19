@@ -21,7 +21,7 @@
             @change="setEditTodoValue(todo, index)"
           />
           <span>{{ todo.text }}</span>
-          <input type="text" v-show="todo.done" v-model="todo.text" />
+          <input type="text" v-show="todo.done" v-model="todo.editText" />
           <button @click="update(index)" v-show="todo.done">編集</button>
           <button @click="remove(index)" v-show="todo.done">削除</button>
         </li>
