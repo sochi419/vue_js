@@ -27,19 +27,17 @@
         placeholder="todoを入力してください "
       />
       <button @click="add">追加</button>
-      {{ todoList }}
       <ul>
         <li v-for="(todo, index) in todoList" :key="index">
           <label>
-            <span
-              @click="selectTodo = todo.text, editTodo = todo.text, setEditTodoValue(todo, index)"
+            <span @click="selectTodo = todo.text, editTodoValue = todo.text"
               >{{ todo.text }}</span
             >
           </label>
           <input
             type="text"
             v-show="todo.text === selectTodo"
-            v-model="editTodo"
+            v-model="editTodoValue"
           />
           <button @click="update(index)" v-show="todo.text === selectTodo">
             編集

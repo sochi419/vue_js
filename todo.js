@@ -5,7 +5,7 @@ Vue.createApp({
       storageKey: "todoList",
       newTodo: "",
       todoList: [],
-      editTodo: "",
+      editTodoValue: "",
       selectTodo: "",
     };
   },
@@ -24,14 +24,10 @@ Vue.createApp({
     },
     update(index) {
       const todo = this.todoList[index];
-      if (this.editTodo !== "") {
-        todo.text = this.editTodo;
-        this.editTodo = "";
+      if (this.editTodoValue !== "") {
+        todo.text = this.editTodoValue;
         localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       }
-    },
-    setEditTodoValue(todo, index) {
-      this.editTodo = todo.text;
     },
   },
   created() {
