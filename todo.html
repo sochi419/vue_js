@@ -11,6 +11,10 @@
       button {
         margin-right: 10px;
       }
+      label:hover {
+        cursor: pointer;
+        color: blue;
+      }
     </style>
   </head>
 
@@ -26,11 +30,6 @@
       <ul>
         <li v-for="(todo, index) in todoList" :key="index">
           <label>
-            <input
-              type="checkbox"
-              v-model="todo.done"
-              @change="setEditTodoValue(todo, index)"
-            />
             <span @click="todo.done = !todo.done">{{ todo.text }}</span>
           </label>
           <input type="text" v-show="todo.done" v-model="todo.editText" />
