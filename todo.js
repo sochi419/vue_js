@@ -33,6 +33,10 @@ Vue.createApp({
     },
     setEditTodoValue(todo, index) {
       this.todoList[index].editText = todo.text;
+      for (let i = 0; i < this.todoList.length; i++) {
+        this.todoList[i].done = false;
+      }
+      this.todoList[index].done = true;
     },
   },
   created() {
