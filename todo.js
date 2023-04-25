@@ -13,7 +13,7 @@ Vue.createApp({
         return;
       }
       for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].done = false;
+        this.todoList[i].edit = false;
       }
       this.todoList.push({ text: this.newTodo, editText: "" });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
@@ -34,9 +34,9 @@ Vue.createApp({
     setEditTodoValue(todo, index) {
       this.todoList[index].editText = todo.text;
       for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].done = false;
+        this.todoList[i].edit = false;
       }
-      this.todoList[index].done = true;
+      this.todoList[index].edit = true;
     },
   },
   created() {
@@ -44,7 +44,7 @@ Vue.createApp({
     if (dataStr) {
       this.todoList = JSON.parse(dataStr);
       for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].done = false;
+        this.todoList[i].edit = false;
       }
     }
   },
