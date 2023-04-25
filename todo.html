@@ -30,7 +30,9 @@
       <ul>
         <li v-for="(todo, index) in todoList" :key="index">
           <label>
-            <span @click="todo.done = !todo.done">{{ todo.text }}</span>
+            <span @click="todo.done = !todo.done,setEditTodoValue(todo, index)"
+              >{{ todo.text }}</span
+            >
           </label>
           <input type="text" v-show="todo.done" v-model="todo.editText" />
           <button @click="update(index)" v-show="todo.done">編集</button>
