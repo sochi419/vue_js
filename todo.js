@@ -5,16 +5,14 @@ Vue.createApp({
       storageKey: "todoList",
       newTodo: "",
       todoList: [],
-      editText: "",
+      editTodo: "",
+      selectTodo: "",
     };
   },
   methods: {
     add() {
       if (this.newTodo.trim() === "") {
         return;
-      }
-      for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].edit = false;
       }
       this.todoList.push({ text: this.newTodo });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
@@ -26,27 +24,20 @@ Vue.createApp({
     },
     update(index) {
       const todo = this.todoList[index];
-      if (this.editText !== "") {
-        todo.text = this.editText;
-        this.editText = "";
+      if (this.editTodo !== "") {
+        todo.text = this.editTodo;
+        this.editTodo = "";
         localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       }
     },
     setEditTodoValue(todo, index) {
-      this.editText = todo.text;
-      for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].edit = false;
-      }
-      this.todoList[index].edit = true;
+      this.editTodo = todo.text;
     },
   },
   created() {
     const dataStr = localStorage.getItem(this.storageKey);
     if (dataStr) {
       this.todoList = JSON.parse(dataStr);
-      for (let i = 0; i < this.todoList.length; i++) {
-        this.todoList[i].edit = false;
-      }
     }
   },
 }).mount("#app");
