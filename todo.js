@@ -5,6 +5,7 @@ Vue.createApp({
       storageKey: "todoList",
       newTodo: "",
       todoList: [],
+      editText: "",
     };
   },
   methods: {
@@ -15,7 +16,7 @@ Vue.createApp({
       for (let i = 0; i < this.todoList.length; i++) {
         this.todoList[i].edit = false;
       }
-      this.todoList.push({ text: this.newTodo, editText: "" });
+      this.todoList.push({ text: this.newTodo });
       localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       this.newTodo = "";
     },
@@ -25,14 +26,14 @@ Vue.createApp({
     },
     update(index) {
       const todo = this.todoList[index];
-      if (todo.editText !== "") {
-        todo.text = todo.editText;
-        todo.editText = "";
+      if (this.editText !== "") {
+        todo.text = this.editText;
+        this.editText = "";
         localStorage.setItem(this.storageKey, JSON.stringify(this.todoList));
       }
     },
     setEditTodoValue(todo, index) {
-      this.todoList[index].editText = todo.text;
+      this.editText = todo.text;
       for (let i = 0; i < this.todoList.length; i++) {
         this.todoList[i].edit = false;
       }
